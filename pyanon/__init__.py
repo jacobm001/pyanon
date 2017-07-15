@@ -1,3 +1,4 @@
+import csv
 import random
 
 class Anon():
@@ -21,3 +22,10 @@ class Anon():
 			if value not in self.known_values.values():
 				self.known_values[key] = value
 				return value
+
+	def save_relation(self, filename):
+		with open(filename, 'w') as csvfile:
+			writer = csv.writer(csvfile)
+
+			for key, value in self.known_values.items():
+				writer.writerow([ key, value ])
