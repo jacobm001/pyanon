@@ -9,6 +9,11 @@ class Anon():
 		args = args[1:]
 
 	def anonymize(self, key):
+		""" Create an anonymized reference for the input
+			If an anonymized value does not yet exist, it 
+			will be automatically added.
+		"""
+
 		if key in self.known_values:
 			return self.known_values[key]
 
