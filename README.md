@@ -18,7 +18,7 @@ with open('export.csv', 'w') as csvfile:
 	csvwriter = csv.writer(csvfile)
 	for row in cur:
 		csvwriter.write([
-			anonymizer(row['id'])
+			anonymizer.anonymize(row['id'])
 			, test_score
 		])
 ```
