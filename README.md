@@ -19,6 +19,6 @@ with open('export.csv', 'w') as csvfile:
 	for row in cur:
 		csvwriter.write([
 			anonymizer.anonymize(row['id'])
-			, test_score
+			, row['test_score']
 		])
 ```
