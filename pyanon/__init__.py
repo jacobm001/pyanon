@@ -17,6 +17,9 @@ class Anon():
 
 		else:
 			return self.gen_new_value(key)
+
+	def __str__(self):
+		return str(self.known_values)
 		
 	def gen_new_value(self, key):
 		while 1:
