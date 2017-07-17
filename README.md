@@ -11,14 +11,14 @@ It often makes sense to share data for purposes of replication, collaboration, o
 Generally speaking, a unique identifier (uuid) is needed to associate rows. That uuid, however, could be something sensitive like a student ID number, or a social security number. The example below replaces the student id number with a newly generated uuid, which will then be saved for the entire export process.
 
 ```python
-anonymizer = Anon()
+anon = pyanon.Anon()
 cur.execute('select id, test_score from student_exams')
 
 with open('export.csv', 'w') as csvfile:
 	csvwriter = csv.writer(csvfile)
 	for row in cur:
 		csvwriter.write([
-			anonymizer.anonymize(row['id'])
+			anon[row['id']]
 			, row['test_score']
 		])
 ```
