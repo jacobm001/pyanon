@@ -8,12 +8,10 @@ class Anon():
 		self = args[0]
 		args = args[1:]
 
-	def anonymize(self, key):
-		""" Create an anonymized reference for the input
-			If an anonymized value does not yet exist, it 
-			will be automatically added.
-		"""
+	def __set__(self, obj, type=None):
+		return
 
+	def __getitem__(self, key):
 		if key in self.known_values:
 			return self.known_values[key]
 
