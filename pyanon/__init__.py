@@ -1,34 +1,24 @@
 import csv
-import random
+import uuid
 
 class Anon():
 	known_values = {}
 
-	def __init__(*args, **kwds):
-		self = args[0]
-		args = args[1:]
+	def __init__(self):
+		pass
 
 	def __set__(self, obj, type=None):
 		return
 
 	def __getitem__(self, key):
-		if key in self.known_values:
+		try:
 			return self.known_values[key]
-
-		else:
-			return self.gen_new_value(key)
-
-	def __str__(self):
-		return str(self.known_values)
-		
-	def gen_new_value(self, key):
-		while 1:
-			value = random.randint(0, 1000000)
+		except KeyError:
+			value = uuid.uuid1()
+			self.known_values[key] = value
 			
-			if value not in self.known_values.values():
-				self.known_values[key] = value
-				return value
-
+			return self.known_values[value]
+		
 	def save_relation(self, filename):
 		with open(filename, 'w') as csvfile:
 			writer = csv.writer(csvfile)
